@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prestij Emlak | Premium Gayrimenkul Çözümleri</title>
+  <style>
+    :root{
+      --bg:#0c111b;
+      --bg2:#121a27;
+      --card:#121826;
+      --gold:#d4af37;
+      --gold2:#f4d77a;
+      --text:#f5f7fb;
+      --muted:#a8b0bf;
+      --line:rgba(255,255,255,.08);
+      --white:#ffffff;
+      --dark:#0a0f17;
+      --shadow:0 20px 45px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:linear-gradient(180deg,#0b1018 0%, #101725 45%, #0a0f17 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(1180px, 92%);
+      margin:auto;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:999;
+      background:rgba(7,11,18,.75);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:80px;
+      gap:20px;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:800;
+      letter-spacing:.3px;
+    }
+
+    .logo span{
+      color:var(--gold);
+    }
+
+    .menu{
+      display:flex;
+      gap:28px;
+      list-style:none;
+      align-items:center;
+    }
+
+    .menu a{
+      color:#dbe2ee;
+      font-weight:600;
+      transition:.25s;
+      font-size:15px;
+    }
+
+    .menu a:hover{
+      color:var(--gold2);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 24px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      box-shadow:0 10px 25px rgba(212,175,55,.25);
+    }
+
+    .btn-gold:hover{
+      transform:translateY(-2px);
+      box-shadow:0 15px 32px rgba(212,175,55,.35);
+    }
+
+    .btn-line{
+      border:1px solid rgba(255,255,255,.18);
+      color:var(--white);
+      background:transparent;
+    }
+
+    .btn-line:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+    }
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      background:
+        linear-gradient(rgba(6,10,16,.62), rgba(6,10,16,.78)),
+        url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:520px;
+      right:-120px;
+      top:90px;
+      background:radial-gradient(circle, rgba(212,175,55,.22), transparent 60%);
+      filter:blur(10px);
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:32px;
+      align-items:center;
+      padding-top:120px;
+      padding-bottom:60px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--gold2);
+      font-weight:700;
+      letter-spacing:1.2px;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      font-size:13px;
+    }
+
+    .hero h1{
+      font-size:clamp(42px, 6vw, 72px);
+      line-height:1.08;
+      margin-bottom:20px;
+      max-width:760px;
+    }
+
+    .hero p{
+      color:#d0d8e7;
+      font-size:18px;
+      max-width:650px;
+      margin-bottom:30px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:30px;
+    }
+
+    .hero-highlights{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .hero-highlights span{
+      border:1px solid rgba(255,255,255,.1);
+      padding:10px 16px;
+      border-radius:999px;
+      color:#e9edf4;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+    }
+
+    .lead-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:var(--shadow);
+      border-radius:28px;
+      padding:28px;
+    }
+
+    .lead-box h3{
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .lead-box p{
+      font-size:15px;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .lead-box input,
+    .lead-box select,
+    .lead-box textarea{
+      width:100%;
+      padding:14px 16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      color:var(--white);
+      border-radius:14px;
+      outline:none;
+      margin-bottom:12px;
+    }
+
+    .lead-box input::placeholder,
+    .lead-box textarea::placeholder{
+      color:#b8c0ce;
+    }
+
+    .lead-box button{
+      width:100%;
+      margin-top:8px;
+    }
+
+    .section{
+      padding:95px 0;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:48px;
+    }
+
+    .section-head .mini{
+      color:var(--gold2);
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .section-head h2{
+      font-size:clamp(32px,4vw,48px);
+      margin-bottom:12px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      max-width:760px;
+      margin:auto;
+    }
+
+    .stats{
+      margin-top:-70px;
+      position:relative;
+      z-index:10;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .stat-card{
+      background:linear-gradient(180deg,#141c2b,#0f1623);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px 20px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .stat-num{
+      font-size:34px;
+      font-weight:800;
+      color:var(--gold2);
+      margin-bottom:8px;
+    }
+
+    .stat-card p{
+      color:#c4ccd8;
+      font-size:15px;
+    }
+
+    .properties{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+    }
+
+    .filter-bar{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      background:#121b2a;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:16px;
+      margin-bottom:28px;
+    }
+
+    .filter-bar input,
+    .filter-bar select{
+      width:100%;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.09);
+      background:#0e1521;
+      color:#fff;
+      outline:none;
+    }
+
+    .property-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .property-card{
+      background:linear-gradient(180deg,#131b2a,#101725);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:.35s;
+    }
+
+    .property-card:hover{
+      transform:translateY(-8px) scale(1.01);
+      border-color:rgba(212,175,55,.35);
+    }
+
+    .property-image{
+      position:relative;
+      height:260px;
+      overflow:hidden;
+    }
+
+    .property-image img{
+      height:100%;
+      object-fit:cover;
+      transition:.5s;
+    }
+
+    .property-card:hover .property-image img{
+      transform:scale(1.06);
+    }
+
+    .badge{
+      position:absolute;
+      top:18px;
+      left:18px;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 10px 25px rgba(212,175,55,.28);
+    }
+
+    .fav{
+      position:absolute;
+      top:18px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:rgba(17,22,34,.7);
+      backdrop-filter:blur(8px);
+      display:grid;
+      place-items:center;
+      font-size:18px;
+    }
+
+    .property-body{
+      padding:22px;
+    }
+
+    .property-body h3{
+      font-size:24px;
+      margin-bottom:8px;
+    }
+
+    .property-loc{
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    .property-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .property-meta span{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color:#dde5f2;
+    }
+
+    .property-foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .price{
+      font-size:28px;
+      font-weight:800;
+      color:var(--gold2);
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+    }
+
+    .service-card{
+      background:linear-gradient(180deg,#131c2a,#101826);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      transition:.3s;
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(212,175,55,.35);
+    }
+
+    .service-icon{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#111;
+      font-size:24px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .service-card h3{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .service-card p{
+      color:var(--muted);
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .about-img img{
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      min-height:420px;
+      object-fit:cover;
+    }
+
+    .about-box{
+      background:linear-gradient(180deg,#121a29,#0f1622);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-box h2{
+      font-size:42px;
+      margin-bottom:16px;
+    }
+
+    .about-box p{
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .list{
+      list-style:none;
+      margin:18px 0 26px;
+    }
+
+    .list li{
+      padding:10px 0;
+      color:#e7edf8;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .testimonial-card{
+      background:linear-gradient(180deg,#131c2a,#101826);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .stars{
+      color:var(--gold2);
+      letter-spacing:2px;
+      margin-bottom:14px;
+      font-size:18px;
+    }
+
+    .testimonial-card p{
+      color:#dfe6f2;
+      margin-bottom:18px;
+    }
+
+    .person{
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .cta{
+      background:
+        linear-gradient(rgba(8,12,18,.75), rgba(8,12,18,.82)),
+        url('https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .cta-box{
+      text-align:center;
+      padding:18px 0;
+    }
+
+    .cta-box h2{
+      font-size:clamp(32px,4vw,54px);
+      margin-bottom:14px;
+    }
+
+    .cta-box p{
+      color:#d5dce8;
+      max-width:760px;
+      margin:0 auto 24px;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:24px;
+    }
+
+    .info-card,
+    .form-card{
+      background:linear-gradient(180deg,#121b2a,#101725);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .info-card h3,
+    .form-card h3{
+      font-size:28px;
+      margin-bottom:12px;
+    }
+
+    .info-card p{
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+
+    .contact-item{
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color:#edf2fb;
+    }
+
+    .form-card form{
+      display:grid;
+      gap:12px;
+    }
+
+    .form-card input,
+    .form-card textarea,
+    .form-card select{
+      width:100%;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#0c1320;
+      color:#fff;
+      outline:none;
+    }
+
+    footer{
+      padding:30px 0;
+      border-top:1px solid var(--line);
+      background:#0a0f17;
+    }
+
+    .footer-wrap{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-wrap p{
+      color:#b5becd;
+    }
+
+    .footer-mini{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      color:#dfe5ef;
+      font-size:14px;
+    }
+
+    .whatsapp{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:999;
+      background:#25d366;
+      color:#fff;
+      padding:15px 20px;
+      border-radius:999px;
+      box-shadow:0 14px 30px rgba(0,0,0,.28);
+      font-weight:800;
+      transition:.3s;
+    }
+
+    .whatsapp:hover{
+      transform:translateY(-3px);
+    }
+
+    @media (max-width:1100px){
+      .hero-grid,
+      .split,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .stats-grid,
+      .services-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .property-grid,
+      .testimonial-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .filter-bar{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:768px){
+      .menu{
+        display:none;
+      }
+
+      .stats{
+        margin-top:-40px;
+      }
+
+      .stats-grid,
+      .services-grid,
+      .property-grid,
+      .testimonial-grid,
+      .filter-bar{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-grid{
+        padding-top:130px;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .lead-box{
+        padding:22px;
+      }
+
+      .about-box h2{
+        font-size:34px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#" class="logo">Prestij <span>Emlak</span></a>
+      <ul class="menu">
+        <li><a href="#anasayfa">Anasayfa</a></li>
+        <li><a href="#ilanlar">İlanlar</a></li>
+        <li><a href="#hizmetler">Hizmetler</a></li>
+        <li><a href="#hakkimizda">Hakkımızda</a></li>
+        <li><a href="#yorumlar">Yorumlar</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+      <a href="#iletisim" class="btn btn-gold">Teklif Al</a>
+    </div>
+  </header>
+
+  <section class="hero" id="anasayfa">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Premium Gayrimenkul Deneyimi</span>
+        <h1>Şehrin En Değerli Gayrimenkullerine Prestijle Ulaşın</h1>
+        <p>
+          Satılık ve kiralık portföylerinizi kurumsal bir vitrine taşıyan, güven veren,
+          müşteri dönüşümünü artıran modern emlak web sitesi deneyimi.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#ilanlar" class="btn btn-gold">Öne Çıkan İlanlar</a>
+          <a href="#iletisim" class="btn btn-line">Ücretsiz Danışmanlık</a>
+        </div>
+
+        <div class="hero-highlights">
+          <span>Kurumsal görünüm</span>
+          <span>WhatsApp dönüşümü</span>
+          <span>Mobil uyumlu</span>
+          <span>Satış odaklı tasarım</span>
+        </div>
+      </div>
+
+      <div class="lead-box">
+        <h3>Hızlı Talep Formu</h3>
+        <p>Müşterileriniz birkaç saniyede size ulaşsın.</p>
+        <input type="text" placeholder="Ad Soyad">
+        <input type="tel" placeholder="Telefon Numaranız">
+        <select>
+          <option>İlgilendiğim İşlem Türü</option>
+          <option>Satılık Daire</option>
+          <option>Kiralık Daire</option>
+          <option>Villa</option>
+          <option>Arsa</option>
+          <option>İşyeri</option>
+        </select>
+        <textarea rows="4" placeholder="Kısaca talebinizi yazın"></textarea>
+        <button class="btn btn-gold" onclick="showMessage()">Hemen Geri Dönüş Al</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" data-target="500">0+</div>
+          <p>Mutlu Müşteri</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="1200">0+</div>
+          <p>Aktif Portföy</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="10">0+</div>
+          <p>Yıllık Deneyim</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="24">0/7</div>
+          <p>Danışmanlık Desteği</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section properties" id="ilanlar">
+    <div class="container">
+      <div class="section-head">
+        <span class="mini">Seçkin Portföy</span>
+        <h2>Öne Çıkan İlanlar</h2>
+        <p>
+          Güven veren sunum, güçlü ilan kartları ve dikkat çekici fiyat alanlarıyla
+          müşterilerin ilgisini hızlıca toplayan premium vitrin.
+        </p>
+      </div>
+
+      <div class="filter-bar">
+        <select>
+          <option>İşlem Türü</option>
+          <option>Satılık</option>
+          <option>Kiralık</option>
+        </select>
+        <select>
+          <option>Emlak Türü</option>
+          <option>Daire</option>
+          <option>Villa</option>
+          <option>Arsa</option>
+          <option>İşyeri</option>
+        </select>
+        <input type="text" placeholder="Konum">
+        <input type="text" placeholder="Bütçe">
+        <button class="btn btn-gold" onclick="showSearch()">İlan Ara</button>
+      </div>
+
+      <div class="property-grid">
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?auto=format&fit=crop&w=1600&q=80" alt="Villa">
+            <span class="badge">Satılık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Özel Havuzlu Lüks Villa</h3>
+            <div class="property-loc">İstanbul / Zekeriyaköy</div>
+            <div class="property-meta">
+              <span>6+1</span>
+              <span>420 m²</span>
+              <span>Kapalı Otopark</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">24.900.000 TL</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80" alt="Daire">
+            <span class="badge">Kiralık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Modern Rezidans Dairesi</h3>
+            <div class="property-loc">İstanbul / Ataşehir</div>
+            <div class="property-meta">
+              <span>3+1</span>
+              <span>165 m²</span>
+              <span>Site İçinde</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">68.000 TL / Ay</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80" alt="İşyeri">
+            <span class="badge">Kiralık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Prestijli Cadde Ofisi</h3>
+            <div class="property-loc">İstanbul / Şişli</div>
+            <div class="property-meta">
+              <span>280 m²</span>
+              <span>Merkezi Lokasyon</span>
+              <span>Kurumsal Kullanım</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">95.000 TL / Ay</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1560185007-5f0bb1866cab?auto=format&fit=crop&w=1600&q=80" alt="Daire">
+            <span class="badge">Satılık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Boğaz Manzaralı Daire</h3>
+            <div class="property-loc">İstanbul / Beşiktaş</div>
+            <div class="property-meta">
+              <span>4+1</span>
+              <span>210 m²</span>
+              <span>Akıllı Ev</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">18.750.000 TL</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80" alt="Arsa">
+            <span class="badge">Satılık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Yatırımlık İmarlı Arsa</h3>
+            <div class="property-loc">Bodrum / Yalıkavak</div>
+            <div class="property-meta">
+              <span>1250 m²</span>
+              <span>İmarlı</span>
+              <span>Denize Yakın</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">14.200.000 TL</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80" alt="Villa">
+            <span class="badge">Satılık</span>
+            <div class="fav">★</div>
+          </div>
+          <div class="property-body">
+            <h3>Müstakil Bahçeli Yaşam Alanı</h3>
+            <div class="property-loc">İzmir / Urla</div>
+            <div class="property-meta">
+              <span>5+1</span>
+              <span>350 m²</span>
+              <span>Özel Peyzaj</span>
+            </div>
+            <div class="property-foot">
+              <div class="price">16.900.000 TL</div>
+              <a href="#iletisim" class="btn btn-line">Detay Al</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hizmetler">
+    <div class="container">
+      <div class="section-head">
+        <span class="mini">Kurumsal Güç</span>
+        <h2>Size Neler Kazandırır?</h2>
+        <p>
+          Bu yapı sadece güzel görünmek için değil, müşterinin güvenmesini ve size ulaşmasını
+          kolaylaştırmak için tasarlandı.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Premium Kurumsal İmaj</h3>
+          <p>Firmanızı sıradan bir ilan sayfası gibi değil, güçlü bir marka gibi gösterir.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">02</div>
+          <h3>WhatsApp Dönüşümü</h3>
+          <p>Müşterinin size anında mesaj atmasını sağlayarak dönüşüm ihtimalini yükseltir.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">03</div>
+          <h3>Mobil Uyumlu Tasarım</h3>
+          <p>Telefon üzerinden gelen ziyaretçiler için temiz ve profesyonel bir deneyim sunar.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">04</div>
+          <h3>Güven Odaklı Sunum</h3>
+          <p>Yorumlar, sayaçlar ve şık içerik bloklarıyla karar verme sürecini hızlandırır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hakkimizda">
+    <div class="container split">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=80" alt="Ofis">
+      </div>
+      <div class="about-box">
+        <span class="mini">Neden Bu Tarz Site?</span>
+        <h2>Bu artık düz site değil, satış vitrini</h2>
+        <p>
+          Emlak sektöründe ilk izlenim çok önemlidir. İnsanlar önce firmanın güven veren
+          görünümüne bakar, sonra ilanlarla ilgilenir.
+        </p>
+        <p>
+          Bu yüzden hazırladığımız yapı; lüks, kurumsal, temiz ve dönüşüm odaklı bir sunum yapar.
+          Amaç sadece site göstermek değil, “bu firmayla çalışılır” hissi oluşturmaktır.
+        </p>
+
+        <ul class="list">
+          <li>✔ Özel renk ve logo uyarlaması yapılabilir</li>
+          <li>✔ Gerçek ilanlar sisteme eklenebilir</li>
+          <li>✔ WhatsApp ve form bağlantıları çalışır hale getirilebilir</li>
+          <li>✔ Domain ve hosting ile yayına alınabilir</li>
+        </ul>
+
+        <a href="#iletisim" class="btn btn-gold">Bu Siteyi Bana Uyarla</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="yorumlar">
+    <div class="container">
+      <div class="section-head">
+        <span class="mini">Sosyal Kanıt</span>
+        <h2>Müşteri Yorumları</h2>
+        <p>İnsanlar emlakta önce güven arar. Bu alan tam da o hissi verir.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Tüm süreç boyunca çok profesyonel ilerlediler. Hem satış süreci çok düzenliydi
+            hem de iletişim gerçekten çok hızlıydı.”
+          </p>
+          <div class="person">Ahmet Yılmaz</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Yatırım için doğru bölgeleri önerdiler. Site üzerinden ulaştıktan sonra aynı gün
+            geri dönüş almamız da bizi çok etkiledi.”
+          </p>
+          <div class="person">Zeynep Demir</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Kurumsal ve güven veren bir hizmet aldık. Evi bulma süreci boyunca her detayla
+            ilgilendiler. Kesinlikle tavsiye ederim.”
+          </p>
+          <div class="person">Murat Kaya</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container cta-box">
+      <h2>Firmanız için özel hazırlanmış emlak sitesiyle fark yaratın</h2>
+      <p>
+        Bu demo; firmanıza özel renkler, logonuz, gerçek ilanlar, mahalle-bölge bilgileri,
+        SEO altyapısı ve iletişim entegrasyonları ile gerçek satış paketine dönüştürülebilir.
+      </p>
+      <a href="#iletisim" class="btn btn-gold">Teklif İsteyin</a>
+    </div>
+  </section>
+
+  <section class="section" id="iletisim">
+    <div class="container">
+      <div class="section-head">
+        <span class="mini">İletişim</span>
+        <h2>Hemen Görüşelim</h2>
+        <p>Demo beğenildiyse firmanıza özel hale getirip yayına alabiliriz.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="info-card">
+          <h3>İletişim Bilgileri</h3>
+          <p>Bu alanı müşterinin gerçek bilgileriyle değiştirirsin.</p>
+
+          <div class="contact-item"><strong>Telefon:</strong> +90 555 123 45 67</div>
+          <div class="contact-item"><strong>E-posta:</strong> info@prestijemlak.com</div>
+          <div class="contact-item"><strong>Adres:</strong> İstanbul / Türkiye</div>
+          <div class="contact-item"><strong>WhatsApp:</strong> Hızlı teklif ve randevu</div>
+        </div>
+
+        <div class="form-card">
+          <h3>Teklif Formu</h3>
+          <form onsubmit="return sendForm(event)">
+            <input type="text" placeholder="Ad Soyad" required>
+            <input type="tel" placeholder="Telefon Numaranız" required>
+            <input type="email" placeholder="E-posta Adresiniz">
+            <select required>
+              <option value="">İlgilendiğiniz Hizmet</option>
+              <option>Satılık İlan Paketi</option>
+              <option>Kiralık İlan Paketi</option>
+              <option>Kurumsal Emlak Sitesi</option>
+              
+            </select>
+            <textarea rows="5" placeholder="Kısaca ihtiyacınızı yazın"></textarea>
+            <button class="btn btn-gold" type="submit">Mesaj Gönder</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2026 Prestij Emlak Demo. Tüm hakları saklıdır.</p>
+      <div class="footer-mini">
+        <span>✔ Güven veren tasarım</span>
+        <span>✔ Mobil uyumlu</span>
+        <span>✔ WhatsApp odaklı dönüşüm</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/905551234567" target="_blank">WhatsApp</a>
+
+  <script>
+    function showMessage(){
+      alert("Talebiniz alındı. En kısa sürede sizinle iletişime geçeceğiz.");
+    }
+
+    function showSearch(){
+      alert("Bu bölüm demo amaçlıdır. İstenirse gerçek filtreleme sistemi eklenebilir.");
+    }
+
+    function sendForm(e){
+      e.preventDefault();
+      alert("Mesajınız başarıyla gönderildi. Demo sürümde bildirim gösterilir.");
+      return false;
+    }
+
+    const counters = document.querySelectorAll(".stat-num");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = +el.getAttribute("data-target");
+          let current = 0;
+          const step = Math.ceil(target / 50);
+
+          const timer = setInterval(() => {
+            current += step;
+            if(current >= target){
+              if(target === 24){
+                el.textContent = "7/24";
+              } else {
+                el.textContent = target + "+";
+              }
+              clearInterval(timer);
+            } else {
+              if(target === 24){
+                el.textContent = "7/24";
+              } else {
+                el.textContent = current + "+";
+              }
+            }
+          }, 30);
+
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+  </script>
+</body>
+</html>
